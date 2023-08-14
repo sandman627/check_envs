@@ -1,0 +1,14 @@
+
+# Virtual Environment
+.venv38
+.venv39
+
+
+# Python Packages
+alfworld
+alfred_data_storage
+downward
+
+
+# etc
+sandbox.py
