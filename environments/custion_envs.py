@@ -1,4 +1,5 @@
 import os
+import yaml
 
 import numpy as np
 
@@ -17,18 +18,31 @@ class Custom_Alfred_Env(gym.Env):
 
     def __init__(self):
         super().__init__()
-        # Define action and observation space
-        # They must be gym.spaces objects
-        # Example when using discrete actions:
+        
+        # setting alfred
+        with open("alfworld/configs/base_config.yaml") as confile:
+            config = yaml.load(confile, yaml.SafeLoader)
+        env_type = config['env']['type']
+        env = getattr(environment, env_type)(config, train_eval='train')
+        self.alf_env = env.init_env(batch_size=1)
+        
+                
+        
+        
         self.action_space = spaces.Discrete(N_DISCRETE_ACTIONS)
         self.observation_space = spaces.Box(low=0, high=255,
-                                            shape=(N_CHANNELS, HEIGHT, WIDTH), dtype=np.uint8)
+                                            shape=(N_CHANNELS, HEIGHT, WIDTH), 
+                                            dtype=np.uint8)
 
     def step(self, action):
+        observation, scores, terminated, info = self.alf_env.step(action)
+        truncated = None  # What is this?
         ...
         return observation, reward, terminated, truncated, info
 
     def reset(self, seed=None, options=None):
+        
+        observation, info = self.alf_env.reset()
         ...
         return observation, info
 

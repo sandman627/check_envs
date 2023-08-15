@@ -5,10 +5,12 @@
 
 
 # Python Packages
+alfred
 alfworld
-alfred_data_storage
+alfworld_data_storage
 downward
 
 
 # etc
 sandbox.py
+test_print.txt
