@@ -12,9 +12,13 @@ import alfworld.agents.environment as environment
 
 
 
+'''
+export ALFWORLD_DATA=/workspace/check_envs/alfworld_data_storage/
+'''
+
 
 def get_alfred_expert_data(datasize:int=10):
-    with open("alfworld/configs/base_config.yaml") as confile:
+    with open("configs/test_config.yaml") as confile:
         config = yaml.load(confile, yaml.SafeLoader)
     env_type = config['env']['type'] # 'AlfredTWEnv' or 'AlfredThorEnv' or 'AlfredHybrid'
     env = getattr(environment, env_type)(config, train_eval='train')

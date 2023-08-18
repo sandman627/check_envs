@@ -5,12 +5,18 @@
 
 
 # Python Packages
+ai2thor-docker
 alfred
 alfworld
 alfworld_data_storage
 downward
 
 
+# vscode configs
+__pycache__
+
+
 # etc
+temp
 sandbox.py
 test_print.txt
