@@ -20,11 +20,18 @@ sudo apt install cmake g++ git make python3
 ## ai2thor
 Unity3D를 기반으로 만든 환경이다.
 버전은 2.1.0 을 사용해야한다.
+
 ```
 pip install ai2thor==2.1.0
 ```
 
 
+/home/sandman/check_envs/.venv38/lib/python3.8/site-packages/alfworld/gen/constants.py
+위치에
+```
+X_DISPLAY = '0'
+```
+저 값을 '2'로 바꿔야할 수도 있음
 
 
 
@@ -53,7 +60,16 @@ pip install -r requirements.txt
 pip install .
 ```
 
+
+
+만약 multi threading 에서 hang걸리면 아래 패키지 설치해야함
 ```
+pip install Werkzeug==2.0.3
+```
+
+
+```
+export DISPLAY=:0.0
 export ALFWORLD_DATA=<storage_path>
 alfworld-download
 ```

@@ -7,10 +7,10 @@ from typing import Any, SupportsFloat
 import imageio
 import numpy as np
 
-from stable_baselines3 import DQN, PPO
+# from stable_baselines3 import DQN, PPO
 
-import gymnasium as gym
-from gymnasium import spaces
+# import gymnasium as gym
+# from gymnasium import spaces
 
 import alfworld.agents.environment as environment
 import alfworld.agents.modules.generic as generic
@@ -28,6 +28,10 @@ from sub_modules.sub_framework import Front_Part
 '''
 export ALFWORLD_DATA=/workspace/check_envs/alfworld_data_storage/
 export ALFWORLD_DATA=/home/sandman/check_envs/alfworld_data_storage/
+
+
+export DISPLAY=:0.0
+
 '''
 
 '''
@@ -66,8 +70,8 @@ if __name__ == "__main__":
     obs, info = env.reset()  # infinte loading error
     print("obs : ", obs)
     
-    print("obs space : ", env.observation_space)
-    print("act space : ", env.action_space)
+    # print("obs space : ", env.observation_space)
+    # print("act space : ", env.action_space)
     
 
     # Train DQN
@@ -88,8 +92,8 @@ if __name__ == "__main__":
         # step
         obs, scores, dones, infos = env.step(random_actions)
         print("obs : ", obs)
-        print("obs space : ", env.observation_space)
-        print("act space : ", env.action_space)
+        # print("obs space : ", env.observation_space)
+        # print("act space : ", env.action_space)
         print("scores : ", scores)
         print("dones : ", dones)
         print("infos : ", infos)
