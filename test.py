@@ -7,10 +7,7 @@ from typing import Any, SupportsFloat
 import imageio
 import numpy as np
 
-# from stable_baselines3 import DQN, PPO
-
-# import gymnasium as gym
-# from gymnasium import spaces
+from PIL import Image
 
 import alfworld.agents.environment as environment
 import alfworld.agents.modules.generic as generic
@@ -69,10 +66,12 @@ if __name__ == "__main__":
     print("Reset Environment")
     obs, info = env.reset()  # infinte loading error
     print("obs : ", obs)
+
+    # check image of environment
     
-    # print("obs space : ", env.observation_space)
-    # print("act space : ", env.action_space)
-    
+    initial_images = env.get_frames()
+    print("type: ", type(env.get_frames()))
+    Image.fromarray(np.squeeze(initial_images, axis=0)).save("temp/test_alfworld_env.png")
 
     # Train DQN
     # model = DQN("")
@@ -80,7 +79,7 @@ if __name__ == "__main__":
  
     
     images = []
-    
+    iter_num = 0
     while True:
         # img = env.get_frames()
         # images.append(img[0])
@@ -98,15 +97,20 @@ if __name__ == "__main__":
         print("dones : ", dones)
         print("infos : ", infos)
         print("Action: {}, Obs: {}".format(random_actions[0], obs[0]))
-        break
+        
+        images.append(np.squeeze(env.get_frames(), axis=0))
+        
+        iter_num += 1
+        if iter_num >= 100:
+            break
         
         
     name = "test"
     gif_filename = os.path.join("logs/gifs", name + '.' + "gif")
     gif_config = {
         'loop':1,
-        'duration': 1/60        
+        'duration': 1/20        
     }
-    # imageio.mimsave(gif_filename, images, format='gif', **gif_config)  
+    imageio.mimsave(gif_filename, images, format='gif', **gif_config)  
         
     

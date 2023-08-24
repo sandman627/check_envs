@@ -17,6 +17,9 @@ __pycache__
 
 
 # etc
+logs
 temp
+hydra_configs
+outputs
 sandbox.py
 test_print.txt
